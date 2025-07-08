@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تغییر رمز عبور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Page Wrapper: Sidebar + Content -->
+<div class="flex min-h-screen">
+
+  <!-- ✅ Sidebar (Right side because RTL) -->
+  <div class="w-full md:w-64 bg-white shadow rounded-xl p-4 flex flex-col items-center">
+    <img src="{{ media }}{{ user.profile }}" class="w-24 h-24 rounded-full object-cover border mb-4" alt="عکس کاربر">
+    <nav class="w-full space-y-2 text-right">
+      <a href="{% url 'user_profile' %}" class="block w-full px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200">اطلاعات</a>
+      <a href="#" class="block w-full px-4 py-2 hover:bg-gray-100 rounded">زمان کاری</a>
+      <a href="{% url 'reset_password' %}" class="block w-full px-4 py-2 hover:bg-gray-100 rounded">بازنویسی رمز عبور</a>
+      <a href="{% url 'logout' %}" class="block w-full px-4 py-2 hover:bg-gray-100 rounded">خروج از حساب کاربری</a>
+    </nav>
+  </div>
+
+  <!-- ✅ Main Content (Left side in RTL) -->
+  <div class="flex-1 flex items-center justify-center p-6">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold text-center mb-6">تغییر رمز عبور</h2>
+
+      {% if error_message %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-right">
+          {{ error_message }}
+        </div>
+      {% endif %}
+      
+
+      <form method="post" class="space-y-4" name="reset_pass_form">
+        {% csrf_token %}
+
+        <div>
+          <label for="new_password" class="block text-sm font-medium text-gray-700">رمز عبور جدید</label>
+          <input type="password" name="new_password" id="new_password" required
+                 class="w-full mt-1 p-2 border rounded text-right" placeholder="رمز عبور جدید">
+        </div>
+
+        <div>
+          <label for="confirm_password" class="block text-sm font-medium text-gray-700">تأیید رمز جدید</label>
+          <input type="password" name="confirm_password" id="confirm_password" required
+                 class="w-full mt-1 p-2 border rounded text-right" placeholder="تأیید رمز جدید">
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+          تغییر رمز
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
