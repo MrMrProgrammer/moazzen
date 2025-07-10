@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import Azan, Takbeer
+from unfold.admin import ModelAdmin
 
 
 @admin.register(Azan)
-class AzanAdmin(admin.ModelAdmin):
+class AzanAdmin(ModelAdmin):
     # list_display = [
     #     "full_name",
     #     "phone_number",
@@ -14,7 +15,7 @@ class AzanAdmin(admin.ModelAdmin):
 
 
 @admin.register(Takbeer)
-class TakbeerAdmin(admin.ModelAdmin):
+class TakbeerAdmin(ModelAdmin):
     # list_display = [
     #     "full_name",
     #     "phone_number",
